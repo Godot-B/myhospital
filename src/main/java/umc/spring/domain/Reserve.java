@@ -14,8 +14,10 @@ public class Reserve {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reserve_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private ReserveStatus status;
 
     private LocalDateTime reserveDateTime;
@@ -29,4 +31,9 @@ public class Reserve {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+
+    public Reserve(Patient patient, Doctor doctor){
+        this.patient = patient;
+        this.doctor = doctor;
+    }
 }
